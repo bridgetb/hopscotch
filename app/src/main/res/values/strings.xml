@@ -7,5 +7,6 @@
     <string name="install_google_play_message">You must install Google Play Services to use this app.</string>
     <string name="title_activity_login">Login</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_map">MapActivity</string>
 
 </resources>

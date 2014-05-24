@@ -18,7 +18,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("/Users/Josh/Documents/debug.keystore")
+//            storeFile file("/Users/Josh/Documents/debug.keystore")
         }
     }
 
@@ -66,6 +66,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:+'
     compile 'se.emilsjolander:sprinkles:1.+'
     compile 'com.mcxiaoke.volley:library-aar:1.+'
+    // You must install or update the Google Repository through the SDK manager to use this dependency.
     compile 'com.google.android.gms:play-services:+'
     compile 'com.squareup.okhttp:okhttp:1.+'
     compile 'de.greenrobot:eventbus:2.+'
