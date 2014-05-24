@@ -1,17 +1,34 @@
 package com.hopscotch.android.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.hopscotch.android.R;
 
-public class HopscotchMapActivity extends Activity {
+public class HPMapActivity extends Activity {
+
+    Runnable mRunnable;
+
+    public static Intent startActivity(Activity activity) {
+        Intent intent = new Intent(activity, HPMapActivity.class);
+        activity.startActivity(intent);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        Intent intent = getIntent();
+        this.startActivity(intent);
+//        mRunnable = new Runnable() {
+//            @Override public void run() {
+//                HPMainActivity.startActivity(HPMapActivity.this);
+//                finish();
+//            }
+//        };
     }
 
 

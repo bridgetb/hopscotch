@@ -2,10 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.hopscotch.android">
 
+    <permission
+        android:name="com.hopscotch.android.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.hopscotch.android.permission.MAPS_RECEIVE"/>
 	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
 
 	<application
 		android:name="com.hopscotch.android.core.HPApplication"
@@ -13,7 +25,7 @@
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
 		android:theme="@style/AppTheme">
-        <uses-library android:name="com.google.android.maps"/>
+        <uses-library android:required="true" android:name="com.google.android.maps" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -21,7 +33,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBvX9NYE1vnUYIGgfSLFAs6rK-EGtd6KhQ" />
+            android:value="AIzaSyCIDqdbwwCR-4TRjSpKgn3XQNqG2cBqPMY" />
 
 
 		<!-- todo -->
@@ -45,9 +57,9 @@
 
 
         <activity
-            android:name="com.hopscotch.android.ui.HopscotchMapActivity"
+            android:name=".ui.HPMapActivity"
             android:label="@string/title_activity_map"
-            android:parentActivityName="com.hopscotch.android.ui.SplashscreenActivity" >
+            android:parentActivityName="com.hopscotch.android.ui.HPMainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />

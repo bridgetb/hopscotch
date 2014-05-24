@@ -16,11 +16,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-    signingConfigs {
-        debug {
-//            storeFile file("/Users/Josh/Documents/debug.keystore")
-        }
-    }
+//    signingConfigs {
+//        debug {
+//            storeFile file("/Users/bridgetbeh/.android/debug.keystore")
+//        }
+//        release {
+//            storeFile file("/Users/bridgetbeh/.android/release.keystore")
+//        }
+//    }
 
     lintOptions {
         disable 'InvalidPackage'
@@ -29,11 +32,11 @@ android {
 
 
     buildTypes {
-        debug {
-            packageNameSuffix ".debug"
-            versionNameSuffix "-debug"
-            signingConfig signingConfigs.debug
-        }
+//        debug {
+//            packageNameSuffix ".debug"
+//            versionNameSuffix "-debug"
+//            signingConfig signingConfigs.debug
+//        }
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
@@ -60,14 +63,14 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     //    compile 'com.crashlytics.android:crashlytics:1.+'
-
+    compile 'com.google.android.gms:play-services:4.2.42'
     compile 'com.android.support:appcompat-v7:19.+'
     compile 'com.android.support:support-v4:+'
     compile 'com.jakewharton:butterknife:+'
     compile 'se.emilsjolander:sprinkles:1.+'
     compile 'com.mcxiaoke.volley:library-aar:1.+'
     // You must install or update the Google Repository through the SDK manager to use this dependency.
-    compile 'com.google.android.gms:play-services:+'
+//    compile 'com.google.android.gms:play-services:+'
     compile 'com.squareup.okhttp:okhttp:1.+'
     compile 'de.greenrobot:eventbus:2.+'
     compile 'com.fasterxml.jackson.core:jackson-core:2.1.+'

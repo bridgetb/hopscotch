@@ -1,5 +1,8 @@
 package com.hopscotch.android.ui;
 
+import com.google.android.gms.maps.*;
+import com.google.android.gms.maps.model.*;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -26,17 +29,35 @@ public class HPMainActivity extends HPAbsActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
 
+        // Get a handle to the Map Fragment
+        GoogleMap map = ((MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map)).getMap();
+
+        Location location = HPApplication.getModel().getLocation();
+        if (location == null) {
+            Toast.makeText(this, "Location not found!", Toast.LENGTH_LONG).show();
+        }
+        LatLng coordinates = new LatLng(location.getLatitude(), location.getLongitude());
+
+        map.setMyLocationEnabled(true);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 13));
+
+        map.addMarker(new MarkerOptions()
+                .title("You")
+                .position(coordinates));
+
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
 		}
 
-		Location location = HPApplication.getModel().getLocation();
+		location = HPApplication.getModel().getLocation();
 		if (null != location) {
 			Toast.makeText(
 					this,
 					String.format("%s %s", "location updated ", Double.toString(location.getLatitude()),
 							Double.toString(location.getLongitude())), Toast.LENGTH_LONG).show();
 		}
+
 	}
 
 	@Override protected void onDestroy() {
@@ -64,5 +85,7 @@ public class HPMainActivity extends HPAbsActivity {
 				this,
 				String.format("%s %s", "location updated ", Double.toString(location.getLatitude()),
 						Double.toString(location.getLongitude())), Toast.LENGTH_LONG).show();
+//        Intent myIntent = new Intent(this, HPMapActivity.class);
+//        HPMainActivity.this.startActivity(myIntent);
 	}
 }
