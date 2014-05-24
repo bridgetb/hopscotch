@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -15,7 +14,7 @@ import com.hopscotch.android.R;
 import eu.inmite.android.lib.dialogs.ISimpleDialogListener;
 import eu.inmite.android.lib.dialogs.SimpleDialogFragment;
 
-public class SplashscreenActivity extends FragmentActivity implements ISimpleDialogListener {
+public class HPSplashscreenActivity extends HPAbsActivity implements ISimpleDialogListener {
 
 	/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	 * start activity
@@ -30,7 +29,7 @@ public class SplashscreenActivity extends FragmentActivity implements ISimpleDia
 	private Runnable mRunnable;
 
 	public static Intent startActivity(Activity activity) {
-		Intent intent = new Intent(activity, SplashscreenActivity.class);
+		Intent intent = new Intent(activity, HPSplashscreenActivity.class);
 		activity.startActivity(intent);
 		return intent;
 	}
@@ -42,7 +41,7 @@ public class SplashscreenActivity extends FragmentActivity implements ISimpleDia
 		/* runnable that carries on to the main activity */
 		mRunnable = new Runnable() {
 			@Override public void run() {
-				MainActivity.startActivity(SplashscreenActivity.this);
+				HPMainActivity.startActivity(HPSplashscreenActivity.this);
 				finish();
 			}
 		};
