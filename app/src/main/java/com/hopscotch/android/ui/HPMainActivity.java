@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.widget.Button;
 
 import com.hopscotch.android.R;
 import com.hopscotch.android.core.HPApplication;
@@ -58,7 +59,14 @@ public class HPMainActivity extends HPAbsActivity {
 							Double.toString(location.getLongitude())), Toast.LENGTH_LONG).show();
 		}
 
-	}
+        Button hopButton = (Button) findViewById(R.id.hoponbutton);
+        hopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hop();
+            }
+        });
+    }
 
 	@Override protected void onDestroy() {
 		super.onDestroy();
@@ -88,4 +96,15 @@ public class HPMainActivity extends HPAbsActivity {
 //        Intent myIntent = new Intent(this, HPMapActivity.class);
 //        HPMainActivity.this.startActivity(myIntent);
 	}
+
+    private void hop() {
+        final Button hopButton = (Button) findViewById(R.id.hoponbutton);
+        boolean isBoarded = HPApplication.getModel().isBoarded();
+        if (isBoarded) {
+            hopButton.setText("HOP ON");
+        } else {
+            hopButton.setText("HOP OFF");
+        }
+        HPApplication.getModel().setBoarded(!isBoarded);
+    }
 }

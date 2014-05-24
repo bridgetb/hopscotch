@@ -8,5 +8,6 @@
     <string name="title_activity_login">Login</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="hop_to">HOP ON</string>
 
 </resources>

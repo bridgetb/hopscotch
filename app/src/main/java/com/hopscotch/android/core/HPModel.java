@@ -9,6 +9,7 @@ public class HPModel {
 
 	private Location mLocation;
 	private boolean mGettingLocation = false;
+    private boolean mBoarded = false;
 
 	public Location getLocation() {
 		return mLocation;
@@ -27,5 +28,11 @@ public class HPModel {
 	public boolean isGettingLocation() {
 		return mGettingLocation;
 	}
+
+    public void setBoarded(boolean value) {
+        mBoarded = value;
+    }
+
+    public boolean isBoarded() { return mBoarded; }
 
 }
