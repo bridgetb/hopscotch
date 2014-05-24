@@ -1,6 +1,5 @@
 package com.hopscotch.android.ui;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.hopscotch.android.R;
 
-public class LoginActivity extends Activity {
+public class HPLoginActivity extends HPAbsActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
