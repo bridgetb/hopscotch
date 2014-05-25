@@ -9,6 +9,10 @@ android {
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
+        if (project.hasProperty("API_KEY")) {
+            //adds a string to the  build config for testing
+            buildConfigField "String", "API_KEY", API_KEY
+        }
     }
 
     compileOptions {
@@ -16,61 +20,81 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-//    signingConfigs {
-//        debug {
-//            storeFile file("/Users/bridgetbeh/.android/debug.keystore")
-//        }
-//        release {
-//            storeFile file("/Users/bridgetbeh/.android/release.keystore")
-//        }
-//    }
+    signingConfigs {
+        debug {
+            storeFile file(debugKeystore)
+        }
+        release {
+            storeFile file("/Users/Josh/Downloads/hopscotch.keystore")
+            storePassword keystorePassword
+            keyAlias keystorePassword
+            keyPassword keystorePassword
+        }
+
+
+    }
 
     lintOptions {
         disable 'InvalidPackage'
+        abortOnError false
     }
 
+packagingOptions {
+    exclude 'META-INF/LICENSE.txt'
+    exclude 'META-INF/LICENSE'
+    exclude 'META-INF/NOTICE'
+}
 
 
-    buildTypes {
-//        debug {
+
+
+
+buildTypes {
+    debug {
+        resValue "string", "mapsApiKey", debugMapsApiKey;
 //            packageNameSuffix ".debug"
 //            versionNameSuffix "-debug"
 //            signingConfig signingConfigs.debug
-//        }
-        release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-//            signingConfig signingConfigs.release
-        }
+    }
+    release {
+        resValue "string", "mapsApiKey", debugMapsApiKey;
+        runProguard false
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        signingConfig signingConfigs.release
+    }
 
-        //debug, release, etc...
-        applicationVariants.all { variant ->
+    //debug, release, etc...
+    applicationVariants.all { variant ->
 
-            def apk = variant.packageApplication.outputFile;
-            def newName = "";
+        def apk = variant.packageApplication.outputFile;
+        def newName = "";
 
-            newName = apk.name.replace(".apk", "-v" + defaultConfig.versionName + ".apk");
+        newName = apk.name.replace(".apk", "-v" + defaultConfig.versionName + ".apk");
 
-            variant.packageApplication.outputFile = new File(apk.parentFile, newName);
-            if (variant.zipAlign) {
-                variant.zipAlign.outputFile = new File(apk.parentFile, newName.replace("-unaligned", ""));
-            }
+        variant.packageApplication.outputFile = new File(apk.parentFile, newName);
+        if (variant.zipAlign) {
+            variant.zipAlign.outputFile = new File(apk.parentFile, newName.replace("-unaligned", ""));
         }
     }
+}
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     //    compile 'com.crashlytics.android:crashlytics:1.+'
+    // You must install or update the Google Repository through the SDK manager to use this dependency.
+//    compile 'com.google.android.gms:play-services:+'
+    compile 'eu.inmite.android.lib:android-styled-dialogs:1.+@aar'
+
+
+    compile 'com.squareup.okhttp:okhttp:1.+'
     compile 'com.google.android.gms:play-services:4.2.42'
     compile 'com.android.support:appcompat-v7:19.+'
     compile 'com.android.support:support-v4:+'
     compile 'com.jakewharton:butterknife:+'
     compile 'se.emilsjolander:sprinkles:1.+'
     compile 'com.mcxiaoke.volley:library-aar:1.+'
-    // You must install or update the Google Repository through the SDK manager to use this dependency.
-//    compile 'com.google.android.gms:play-services:+'
     compile 'com.squareup.okhttp:okhttp:1.+'
     compile 'de.greenrobot:eventbus:2.+'
     compile 'com.fasterxml.jackson.core:jackson-core:2.1.+'
@@ -79,4 +103,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.1.+'
     compile 'com.github.flavienlaurent.datetimepicker:library:+'
     compile 'eu.inmite.android.lib:android-styled-dialogs:1.+@aar'
+    compile 'com.atapiwrapper.library:atapiwrapper:1.1.0@aar'
+    compile 'com.squareup.retrofit:converter-jackson:1.+'
+    compile 'com.squareup.retrofit:retrofit:1.+'
 }

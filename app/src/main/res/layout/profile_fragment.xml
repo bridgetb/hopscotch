@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:id="@+id/background"
+			android:layout_marginTop="60dp"
+			android:background="@color/white_background"
+			android:layout_height="match_parent">
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="#D8D8D8" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/content"
+			android:layout_width="match_parent"
+			android:orientation="vertical"
+			android:layout_marginLeft="@dimen/activity_horizontal_margin"
+			android:layout_marginRight="@dimen/activity_horizontal_margin"
+			android:layout_marginTop="@dimen/activity_vertical_margin"
+			android:layout_marginBottom="@dimen/activity_vertical_margin"
+			android:gravity="center_horizontal"
+			android:layout_height="match_parent">
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="12dp"
+				android:src="@drawable/profile_picture" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:fontFamily="sans-serif-light"
+				android:textSize="20sp"
+				android:layout_marginBottom="6dp"
+				android:layout_gravity="center_horizontal"
+				android:text="Clara Jackson" />
+
+			<View
+				android:layout_width="200dp"
+				android:layout_marginBottom="12dp"
+				android:layout_height="0.5dp"
+				android:background="#C9C9C9" />
+
+			<FrameLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_marginBottom="12dp"
+					android:layout_height="wrap_content"
+					android:src="@drawable/points" />
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="8sp"
+					android:fontFamily="sans-serif-light"
+					android:layout_gravity="center"
+					android:textColor="#aaffffff"
+					android:text="LEVEL" />
+
+			</FrameLayout>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="12dp"
+				android:textColor="#C9C9C9"
+				android:text="47 points left to level up!" />
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/hopscotch_progress" />
+
+		</LinearLayout>
+
+	</FrameLayout>
+</ScrollView>

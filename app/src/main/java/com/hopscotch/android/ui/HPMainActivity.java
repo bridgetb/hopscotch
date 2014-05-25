@@ -1,22 +1,23 @@
 package com.hopscotch.android.ui;
 
-import com.google.android.gms.maps.*;
-import com.google.android.gms.maps.model.*;
-
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
-import android.widget.Button;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.hopscotch.android.R;
 import com.hopscotch.android.core.HPApplication;
 import com.hopscotch.android.core.events.HPLocationEvent;
+import com.hopscotch.android.ui.fragment.ProfileFragment;
+import com.hopscotch.android.ui.fragment.RouteListFragment;
 
 public class HPMainActivity extends HPAbsActivity {
 
@@ -30,59 +31,59 @@ public class HPMainActivity extends HPAbsActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
 
-        // Get a handle to the Map Fragment
-        GoogleMap map = ((MapFragment) getFragmentManager()
-                .findFragmentById(R.id.map)).getMap();
+		// Get a handle to the Map Fragment
+		GoogleMap map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 
-        Location location = HPApplication.getModel().getLocation();
-        if (location == null) {
-            Toast.makeText(this, "Location not found!", Toast.LENGTH_LONG).show();
-        }
-        LatLng coordinates = new LatLng(location.getLatitude(), location.getLongitude());
+		//add profile fragment
+		getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new ProfileFragment()).commit();
 
-        map.setMyLocationEnabled(true);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 13));
+		Location location = HPApplication.getModel().getLocation();
+		if (location == null) {
+			Toast.makeText(this, "Location not found!", Toast.LENGTH_LONG).show();
+		} else {
 
-        map.addMarker(new MarkerOptions()
-                .title("You")
-                .position(coordinates));
+			LatLng coordinates = new LatLng(location.getLatitude(), location.getLongitude());
 
-		if (savedInstanceState == null) {
-			getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
+			map.getUiSettings().setZoomControlsEnabled(false);
+			map.getUiSettings().setCompassEnabled(false);
+			map.getUiSettings().setAllGesturesEnabled(false);
+			map.getUiSettings().setMyLocationButtonEnabled(false);
+			map.setMyLocationEnabled(true);
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 13));
+
+			map.addMarker(new MarkerOptions().title("You").position(coordinates));
 		}
 
-		location = HPApplication.getModel().getLocation();
-		if (null != location) {
-			Toast.makeText(
-					this,
-					String.format("%s %s", "location updated ", Double.toString(location.getLatitude()),
-							Double.toString(location.getLongitude())), Toast.LENGTH_LONG).show();
-		}
-
-        Button hopButton = (Button) findViewById(R.id.hoponbutton);
-        hopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                hop();
-            }
-        });
-    }
-
-	@Override protected void onDestroy() {
-		super.onDestroy();
+		//        Button hopButton = (Button) findViewById(R.id.hoponbutton);
+		//        hopButton.setOnClickListener(new View.OnClickListener() {
+		//            @Override
+		//            public void onClick(View v) {
+		//                hop();
+		//            }
+		//        });
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
+	@Override public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
 
-		public PlaceholderFragment() {}
-
-		@Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.main_fragment, container, false);
-			return rootView;
+	@Override public void onBackPressed() {
+		if (getSupportFragmentManager().findFragmentById(R.id.content_fragment) instanceof RouteListFragment) {
+			getSupportFragmentManager().popBackStack();
+			return;
 		}
+		super.onBackPressed();
+	}
+
+	@Override public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case R.id.hop_item:
+			doHop();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	public void onEvent(HPLocationEvent event) {
@@ -93,18 +94,11 @@ public class HPMainActivity extends HPAbsActivity {
 				this,
 				String.format("%s %s", "location updated ", Double.toString(location.getLatitude()),
 						Double.toString(location.getLongitude())), Toast.LENGTH_LONG).show();
-//        Intent myIntent = new Intent(this, HPMapActivity.class);
-//        HPMainActivity.this.startActivity(myIntent);
+		//        Intent myIntent = new Intent(this, HPMapActivity.class);
+		//        HPMainActivity.this.startActivity(myIntent);
 	}
 
-    private void hop() {
-        final Button hopButton = (Button) findViewById(R.id.hoponbutton);
-        boolean isBoarded = HPApplication.getModel().isBoarded();
-        if (isBoarded) {
-            hopButton.setText("HOP ON");
-        } else {
-            hopButton.setText("HOP OFF");
-        }
-        HPApplication.getModel().setBoarded(!isBoarded);
-    }
+	private void doHop() {
+		getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new RouteListFragment()).addToBackStack("").commit();
+	}
 }

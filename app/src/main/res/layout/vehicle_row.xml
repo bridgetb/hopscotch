@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="horizontal"
+	android:layout_width="match_parent"
+	android:gravity="center_vertical"
+	android:padding="8dp"
+	android:layout_height="?android:attr/listPreferredItemHeight">
+
+	<TextView
+		android:id="@+id/route_id_textview"
+		android:layout_width="wrap_content"
+		android:layout_marginRight="24dp"
+		android:layout_marginLeft="12dp"
+		tools:text="233"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_height="wrap_content" />
+
+	<TextView
+		android:id="@+id/route_description_textview"
+		android:textColor="#979797"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:singleLine="true"
+		android:text="Leaving from stop 100 in 2 minutes"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+</LinearLayout>

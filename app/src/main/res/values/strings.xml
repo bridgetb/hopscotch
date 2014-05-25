@@ -9,5 +9,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="hop_to">HOP ON</string>
+    <string name="hop_on">Hop On</string>
+    <string name="hop">Hop</string>
+    <string name="title_activity_points">Yay!</string>
 
 </resources>

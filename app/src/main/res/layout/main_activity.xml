@@ -1,196 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context="com.hopscotch.android.ui.HPMainActivity"
-    tools:ignore="MergeRootFrame"
-    android:onClick="hop()">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/container"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	tools:context="com.hopscotch.android.ui.HPMainActivity">
 
+	<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/map"
+		android:layout_width="match_parent"
+		android:layout_height="250dp"
+		android:name="com.google.android.gms.maps.MapFragment" />
 
+	<FrameLayout
+		android:id="@+id/content_fragment"
+		android:layout_width="match_parent"
+		android:layout_marginTop="170dp"
+		android:layout_height="match_parent" />
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="300px"
-    android:name="com.google.android.gms.maps.MapFragment"
-        android:apiKey="AIzaSyCIDqdbwwCR-4TRjSpKgn3XQNqG2cBqPMY"
-        />
-
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="500px"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="50px">
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20px">
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Nearby Buses"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/productID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Recent Trips"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-            </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10px">
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="258 - Civic" />
-
-            <TextView
-                android:id="@+id/productID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Civic to Mt Roskill" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10px">
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="267 - Wellesley St" />
-
-            <TextView
-                android:id="@+id/productID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Mt Roskill to Civic" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10px">
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="267 - Wellesley St" />
-
-            <TextView
-                android:id="@+id/productID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Mt Roskill to Civic" />
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20px"
-            android:layout_marginBottom="20px">
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Points Summary"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/productID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="(Jane Doe)"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10px">
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Fuel savings:" />
-
-            <TextView
-                android:id="@+id/productID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="$102.57" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10px">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Distance travelled:" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="50km" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10px">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Badges earned:" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Busy busser" />
-        </TableRow>
-    </TableLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="@string/hop_to"
-        android:id="@+id/hoponbutton"
-        android:layout_gravity="center_horizontal" />
-
-
-</LinearLayout>
+</FrameLayout>

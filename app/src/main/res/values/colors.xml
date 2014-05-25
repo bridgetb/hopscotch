@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<color name="apptheme_color">#d54b19</color>
+	<color name="white_background">#f5f5f5</color>
+	<color name="text_green">#8dd546</color>
+	<color name="text_orange">#f3a536</color>
+	<color name="text_blue">#4e92df</color>
+
+</resources>
